@@ -21,13 +21,15 @@ parseInput(inputPars *par, image **img, molData **m){
   double cosPhi,sinPhi,cosTheta,sinTheta;
 
   /* Set default values */
-  par->dust  	    = NULL;
-  par->inputfile    = NULL;
-  par->outputfile   = NULL;
-  par->binoutputfile= NULL;
-  par->gridfile     = NULL;
-  par->pregrid      = NULL;
-  par->restart      = NULL;
+  par->dust  	       = NULL;
+  par->inputfile       = NULL;
+  par->outputfile      = NULL;
+  par->gridoutputfile  = NULL;
+  par->binoutputfile   = NULL;
+  par->gridfile        = NULL;
+  par->pregrid         = NULL;
+  par->pregridLIME     = NULL;
+  par->restart         = NULL;
 
   par->tcmb = 2.728;
   par->lte_only=0;
@@ -38,6 +40,7 @@ parseInput(inputPars *par, image **img, molData **m){
   par->pIntensity=0;
   par->sinkPoints=0;
   par->doPregrid=0;
+  par->doPregridLIME=0;
   par->nThreads=0;
 
   /* Allocate space for output fits images */
@@ -102,6 +105,7 @@ parseInput(inputPars *par, image **img, molData **m){
   par->radiusSqu=par->radius*par->radius;
   par->minScaleSqu=par->minScale*par->minScale;
   if(par->pregrid!=NULL) par->doPregrid=1;
+  if(par->pregridLIME!=NULL) par->doLIMEPregrid=1;
 
   /*
 Now we need to calculate the cutoff value used in calcSourceFn(). The issue is to decide between
