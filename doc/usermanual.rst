@@ -372,6 +372,14 @@ populations. There is no default value.
 
 .. code:: c
 
+    (string) par->gridoutputfile (optional)
+
+This is the file name of the output file that contains the grid, in a 
+format that can be read in by predefgrid. If this parameter is not set, 
+LIME will not output the grid. There is no default value.
+
+.. code:: c
+
     (string) par->binoutputfile (optional)
 
 This is the file name of the output file that contains the grid,
