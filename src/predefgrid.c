@@ -77,3 +77,37 @@ predefinedGrid(inputPars *par, struct grid *g){
   if(par->gridfile) write_VTK_unstructured_Points(par, g);
   gsl_rng_free(ran);
 }
+
+
+
+void
+predefinedLIMEGrid(inputPars *par, struct grid *g){
+  FILE *fp;
+  int i;
+  double x,y,z,scale,abun;
+	
+  fp=fopen(par->pregridLIME,"r");
+  par->ncell=par->pIntensity+par->sinkPoints;
+
+  /* read in the grid file, which includes all the sink points so we don't need to generate them */
+  for(i=0;i<par->ncell;i++){
+    fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %d\n", &g[i].x[0], &g[i].x[1], &g[i].x[2], &g[i].dens[0], &g[i].t[0], &g[i].t[1], &g[i].abun[0], &g[i].vel[0], &g[i].vel[1], &g[i].vel[2], &g[i].dopb, &g[i].sink);
+    g[i].id=i;
+	g[i].nmol[0]=g[i].abun[0]*g[i].dens[0];
+
+	// This next step needs to be done, even though it looks stupid
+	g[i].dir=malloc(sizeof(point)*1);
+	g[i].ds =malloc(sizeof(double)*1);
+	g[i].neigh =malloc(sizeof(int)*1);
+	if(!silent) progressbar((double) i/((double)par->ncell-1), 4);	
+  }
+
+  fclose(fp);
+
+  qhull(par,g);
+  distCalc(par,g);
+//  getArea(par,g, ran);
+//  getMass(par,g, ran);
+  getVelosplines_lin(par,g);
+  if(par->gridfile) write_VTK_unstructured_Points(par, g);
+}
