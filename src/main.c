@@ -43,6 +43,11 @@ int main () {
       gridAlloc(&par,&g);
       predefinedGrid(&par,g);
     }
+  else if(par.doPregridLIME)
+    {
+      gridAlloc(&par,&g);
+      predefinedLIMEGrid(&par,g);
+    }
   else if(par.restart)
     {
       popsin(&par,&g,&m,&popsdone);
