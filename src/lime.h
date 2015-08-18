@@ -82,7 +82,7 @@
 typedef struct {
   double radius,radiusSqu,minScale,minScaleSqu,tcmb,taylorCutoff;
   int ncell,sinkPoints,pIntensity,nImages,nSpecies,blend;
-  char *outputfile, *binoutputfile, *inputfile;
+  char *outputfile, *gridoutputfile, *binoutputfile, *inputfile;
   char *gridfile;
   char *pregrid;
   char *restart;
@@ -208,6 +208,7 @@ void	getclosest(double, double, double, long *, long *, double *, double *, doub
 void	getVelosplines(inputPars *, struct grid *);
 void	getVelosplines_lin(inputPars *, struct grid *);
 void	gridAlloc(inputPars *, struct grid **);
+void   	gridout(inputPars *, struct grid *, molData *)
 void   	kappa(molData *, struct grid *, inputPars *,int);
 void	levelPops(molData *, inputPars *, struct grid *, int *);
 void	line_plane_intersect(struct grid *, double *, int , int *, double *, double *, double);
