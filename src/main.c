@@ -36,6 +36,8 @@ int main () {
   calcTableEntries(FAST_EXP_MAX_TAYLOR, FAST_EXP_NUM_BITS);
 #endif
 
+  structRead()
+
   parseInput(&par,&img,&m);
 
   if(par.doPregrid)

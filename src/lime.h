@@ -270,3 +270,11 @@ void    collpartmesg3(int, int);
 
 
 
+
+/* new additions by Ryan */
+#define modpoints 40000   /* maximum number of points in model file */
+
+/*Added this 8/12/15 to include RZ structure as global*/
+double arrstruct[modpoints][4];
+int nmodpoints;
+
