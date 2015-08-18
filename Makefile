@@ -7,7 +7,7 @@
 ##
 ## Make sure to put the correct paths.
 ##
-PREFIX  =  ${PATHTOLIME}
+PREFIX  =  /h/feanor0/git/lime/
 
 ifneq (,$(wildcard ${PREFIX}/lib/.))
     LIBS += -L${PREFIX}/lib
@@ -32,6 +32,8 @@ CPPFLAGS	= -I${PREFIX}/include \
 		  -I/opt/local/include \
 		  -I/sw//include \
 	          ${EXTRACPPFLAGS}
+
+OLD_QHULL = T
 
 ifdef OLD_QHULL
 	QHULL   = qhull
