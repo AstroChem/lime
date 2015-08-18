@@ -35,6 +35,31 @@ popsout(inputPars *par, struct grid *g, molData *m){
 
 
 void
+gridout(inputPars *par, struct grid *g, molData *m){
+  FILE *fp;
+  int j,k,l;
+  double dens;
+  /* int i,mi,c,q=0,best; */
+  /* double vel[3],ra[100],rb[100],za[100],zb[100],min; */
+  
+  if((fp=fopen(par->gridoutputfile, "w"))==NULL){
+    if(!silent) bail_out("Error writing output grid file!");
+    exit(1);
+  }
+
+  /* the columns are written out in the same format as predefinedLIMEGrid reads them in */
+  for(j=0;j<par->ncell;j++){
+    dens=0.;
+    for(l=0;l<par->collPart;l++) dens+=g[j].dens[l];
+    fprintf(fp,"%lf %lf %lf %e %e %e %e %e %e %e %e %d ", g[j].x[0], g[j].x[1], g[j].x[2], dens, g[j].t[0], g[j].t[1], g[j].nmol[0]/dens, g[j].vel[0], g[j].vel[1], g[j].vel[2], g[j].dopb, g[j].sink);
+    fprintf(fp,"\n");
+  }
+
+  fclose(fp);
+}
+
+
+void
 binpopsout(inputPars *par, struct grid *g, molData *m){
   FILE *fp;
   int i,j;
