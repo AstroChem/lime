@@ -84,7 +84,7 @@ typedef struct {
   int ncell,sinkPoints,pIntensity,nImages,nSpecies,blend;
   char *outputfile, *gridoutputfile, *binoutputfile, *inputfile;
   char *gridfile;
-  char *pregrid;
+  char *pregrid, pregridLIME;
   char *restart;
   char *dust;
   int sampling,collPart,lte_only,antialias,polarization,doPregrid,nThreads;
@@ -225,6 +225,7 @@ int     pointEvaluation(inputPars *,double, double, double, double);
 void   	popsin(inputPars *, struct grid **, molData **, int *);
 void   	popsout(inputPars *, struct grid *, molData *);
 void	predefinedGrid(inputPars *, struct grid *);
+void	predefinedLIMEGrid(inputPars *, struct grid *);
 double 	ratranInput(char *, char *, double, double, double);
 void   	raytrace(int, inputPars *, struct grid *, molData *, image *);
 void	report(int, inputPars *, struct grid *);
